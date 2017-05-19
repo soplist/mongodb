@@ -1,0 +1,18 @@
+C:\Users\Administrator\Desktop\mongodb-win32-x86_64-2.4.5\mongodb-win32-x86_64-2.4.5
+E:\mongodb-win32-x86_64-2.4.5\mongodb-win32-x86_64-2.4.5
+
+cd C:\Users\Administrator\Desktop\mongodb-win32-x86_64-2.4.5\mongodb-win32-x86_64-2.4.5\bin
+mongod --dbpath=C:\Users\Administrator\Desktop\mongodb-win32-x86_64-2.4.5\mongodb-win32-x86_64-2.4.5\db --master
+
+cd E:\mongodb-win32-x86_64-2.4.5\mongodb-win32-x86_64-2.4.5\bin
+mongod --dbpath=E:\mongodb-win32-x86_64-2.4.5\mongodb-win32-x86_64-2.4.5\db --port 8888 --slave --source=127.0.0.1:27017
+
+
+mongo 127.0.0.1:27017
+db.person.insert({"name":"blue","age":44})
+db.person.find()
+
+mongo 127.0.0.1:8888
+db.person.find()
+
+
