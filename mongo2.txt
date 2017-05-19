@@ -1,0 +1,35 @@
+cd C:\Users\Administrator\Desktop\mongodb-win32-x86_64-2.4.5\mongodb-win32-x86_64-2.4.5\bin
+mongod --dbpath=C:\Users\Administrator\Desktop\mongodb-win32-x86_64-2.4.5\mongodb-win32-x86_64-2.4.5\db
+mongo
+var single={"name":"wangkang","password":"123","age":31,"address":{"province":
+"shanxi","city":"ankang"},"favourite":["linux","ios"]}
+db.user.insert(single)
+db.user.find()
+single.name="bluemonkey"
+single.age=60
+single.favourite=["money","girl"]
+db.user.find()
+db.user.insert(single)
+db.user.find()
+
+/*find age>30*/
+... db.user.find({"age":{$gt:30}})
+/*find age<30*/ db.user.find({"age":{$lt:30}})
+/*find age!=30*/ db.user.find({"age":{$ne:30}})
+/*find age==30*/ db.user.find({"age":30})
+/*find age==31*/ db.user.find({"age":31})
+
+/*find name='wangkang' && province='shanxi'*/ db.user.find({"name":"wangkang","address.province":"shanxi"})
+/*find name='bluemonkey' || province='shanxi'*/ db.user.find({$or:[{"name":"bluemonkey"},{"address.province":"shanxi"}]})
+/*find name in ['bluemonkey','wangkang'] */ db.user.find({"name":{$in:["bluemonkey","wangkang"]}})
+/*find name not in ['wangkang'] */ db.user.find({"name":{$nin:["wangkang"]}})
+/*find name startwith 'w' and endwith 'g' */ db.user.find({"name":/^w/,"name":/g$/})
+/*find name='jack' */ db.user.find({$where:function(){return this.name=='wangkang'}})
+/*add wangkang age to 100*/db.user.update({"name":"wangkang"},{$inc:{"age":20}})
+/*add wangkang age to 100*/db.user.update({"name":"soplist"},{$inc:{"age":21}},true)
+
+
+
+
+
+

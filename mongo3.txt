@@ -1,0 +1,23 @@
+db.person.count();
+db.user.count()
+db.user.find()
+db.user.count({"age":21})
+db.user.group({"key":{"age":true},"initial":{"person":[]},"$reduce":function(cur,prev){prev.person.push(cur.name);}})
+db.user.group({"key":{"age":true},"initial":{"person":[]},"$reduce":function(cur,prev){prev.person.push(cur.name);},"finalize":function(out){out.count=out.person.length;},"condition":{"age":{$lt:62}}})
+var list=db.user.find();
+list.forEach(function(x){print(x.name);})
+for(var i=0;i<100000;i++){var rand=parseInt(i*Math.random());db.person.insert({"name":"wangkang"+i,"age":i})}
+db.person.find({"name":"wangkang"+100000}).explain()
+db.person.ensureIndex({"name":1})
+db.person.find({"name":"wangkang"+100000}).explain()
+db.person.remove()
+db.person.ensureIndex({"name":1},{"unique":true})
+db.person.insert({"name":"wangkang","age":20})
+db.person.insert({"name":"wangkang","age":20})
+db.person.find()
+db.person.ensureIndex({"birthday":1,"name":1})
+db.person.ensureIndex({"name":1,"birthday":1})
+db.person.getIndexes()
+db.person.find({"birthday":"1985-7-29","name":"jack"}).explain()
+db.person.find({"birthday":"1985-7-29","name":"jack"}).hint({"birthday":1,"name":1}).explain()
+db.person.dropIndexes("birthday_1_name_1")

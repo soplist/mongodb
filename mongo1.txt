@@ -1,0 +1,16 @@
+cd C:\Users\Administrator\Desktop\mongodb-win32-x86_64-2.4.5\mongodb-win32-x86_64-2.4.5\bin
+mongod --dbpath=C:\Users\Administrator\Desktop\mongodb-win32-x86_64-2.4.5\mongodb-win32-x86_64-2.4.5\db
+http://localhost:27017/
+http://localhost:28017/
+cd C:\Users\Administrator\Desktop\mongodb-win32-x86_64-2.4.5\mongodb-win32-x86_64-2.4.5\bin
+mongo
+> db.person.insert({"name":"jack","age":20})
+> db.person.insert({"name":"joe","age":25})
+> db.person.find()
+> db.person.find({"name":joe})
+> db.person.find({"name":"joe"})
+> db.person.update({"name":"joe"},{"name":"joe","age":30})
+> db.person.find({"name":"joe"})
+> db.person.remove()
+> db.person.find()
+> db.person.count()
